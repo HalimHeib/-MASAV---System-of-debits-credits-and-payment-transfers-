@@ -1,0 +1,38 @@
+@startuml
+actor Admin
+actor Employee
+actor Supplier
+actor Customer
+
+usecase "Manage Users" as UC1
+usecase "Manage Transactions" as UC2
+usecase "Manage Payments" as UC3
+usecase "Generate Reports" as UC4
+usecase "View Receipts" as UC5
+
+usecase "View and Manage Personal Transactions" as UC6
+usecase "Generate Receipts" as UC7
+usecase "View Salary Payments" as UC8
+
+usecase "View Received Payments" as UC9
+usecase "Generate Receipts (Supplier)" as UC10
+
+usecase "View Personal Transactions" as UC11
+usecase "View Receipts (Customer)" as UC12
+
+Admin --> UC1
+Admin --> UC2
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+
+Employee --> UC6
+Employee --> UC7
+Employee --> UC8
+
+Supplier --> UC9
+Supplier --> UC10
+
+Customer --> UC11
+Customer --> UC12
+@enduml

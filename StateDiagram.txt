@@ -1,0 +1,35 @@
+@startuml
+
+' User State Diagram
+state "User State" as User {
+  [*] --> Registered : Registration Completed
+  Registered --> LoggedIn : Successful Login
+  LoggedIn --> Active : User Interaction
+  Active --> Suspended : Policy Violation
+  Suspended --> Deleted : Account Removal
+}
+
+' Transaction State Diagram
+state "Transaction State" as Transaction {
+  [*] --> Initiated : Transaction Created
+  Initiated --> Pending : Awaiting Processing
+  Pending --> Completed : Processing Successful
+  Pending --> Cancelled : Voided by User/System
+}
+
+' Payment State Diagram
+state "Payment State" as Payment {
+  [*] --> Created : Payment Request Initiated
+  Created --> Pending : Queued for Processing
+  Pending --> Completed : Payment Successful
+  Pending --> Failed : Processing Error
+}
+
+' Receipt State Diagram
+state "Receipt State" as Receipt {
+  [*] --> Generated : Receipt Created
+  Generated --> Viewed : User Opens Receipt
+  Viewed --> Archived : Stored for Record Keeping
+}
+
+@enduml

@@ -1,0 +1,61 @@
+classDiagram
+    class User {
+        +int id
+        +String username
+        +String password
+        +String role
+        +createUser()
+        +updateUser()
+        +deleteUser()
+        +getUserDetails()
+    }
+
+    class Transaction {
+        +int id
+        +int user_id
+        +float amount
+        +String type
+        +String description
+        +Date date
+        +createTransaction()
+        +updateTransaction()
+        +deleteTransaction()
+        +getTransactionDetails()
+    }
+
+    class Payment {
+        +int id
+        +String organization_account
+        +String recipient_account
+        +float amount
+        +String type
+        +Date date
+        +String status
+        +createPayment()
+        +updatePayment()
+        +deletePayment()
+        +getPaymentDetails()
+    }
+
+    class Receipt {
+        +int id
+        +int transaction_id
+        +int user_id
+        +float amount
+        +Date date
+        +generateReceipt()
+        +viewReceipt()
+    }
+
+    class Report {
+        +int id
+        +String type
+        +String date_range
+        +Date generation_date
+        +generateReport()
+        +exportReport()
+    }
+
+    User "1" --> "0..*" Transaction : has
+    User "1" --> "0..*" Payment : makes
+    Transaction "1" --> "0..*" Receipt : generates

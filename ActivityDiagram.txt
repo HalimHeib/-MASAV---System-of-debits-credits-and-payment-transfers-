@@ -1,0 +1,74 @@
+@startuml
+|User|
+start
+
+:Enter Credentials;
+|System|
+:Check Credentials;
+if (Valid Credentials?) then (yes)
+  |User|
+  :Go to Dashboard;
+else (no)
+  :Display Error Message;
+  repeat
+    :Prompt Re-entry of Credentials;
+    |System|
+    :Check Credentials;
+  repeat while (Invalid Credentials?)
+  |User|
+  :Go to Dashboard;
+endif
+
+|Admin or Employee|
+start
+:Access Transaction Management Page;
+
+:Create Transaction Form;
+|System|
+:Validate Input Data;
+if (Data Valid?) then (yes)
+  :Save Transaction to Database;
+else (no)
+  :Display Error Message;
+  repeat
+    |Admin or Employee|
+    :Correct Input Data;
+    |System|
+    :Validate Input Data;
+  repeat while (Data Invalid?)
+  :Save Transaction to Database;
+endif
+
+|Admin or Employee|
+start
+:Select Payment Processing;
+
+:Fill Payment Form;
+|System|
+:Validate and Process Payment Details;
+if (Payment Successful?) then (yes)
+  :Update Payment Status;
+  :Show Confirmation;
+else (no)
+  :Display Error Message;
+  repeat
+    |Admin or Employee|
+    :Retry Payment;
+    |System|
+    :Validate and Process Payment Details;
+  repeat while (Payment Failed)
+  :Update Payment Status;
+  :Show Confirmation;
+endif
+
+|User|
+start
+:Select View/Generate Receipt;
+
+|System|
+:Fetch Transaction Details;
+:Generate Receipt;
+:Display/Download Receipt;
+stop
+
+@enduml
